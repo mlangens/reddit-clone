@@ -1,0 +1,23 @@
+.post {
+  margin-left: 12px;
+  margin-bottom: 12px;
+}
+
+.postTitle {
+  font-weight: bold;
+}
+
+.timePosted {
+  font-size: 14px;
+}
+
+.postAuthor {
+  font-size: 12px;
+}
+
+.postThumb {
+  height: 50px;
+  width: 50px;
+  float: left;
+  padding-right: 10px;
+}

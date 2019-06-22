@@ -55,14 +55,14 @@ export class Homepage extends React.Component {
   }
 
   clickNext() {
-    const count = parseInt(this.props.match.params.count) + 25;
+    const count = parseInt(this.props.match.params.count || 0) + 25;
     const subreddit = this.props.match.params.subreddit;
     const after = this.props.after;
     this.props.history.push(`/${subreddit}/${count}&after=${after}`);
   }
 
   clickPrev() {
-    const currentCount = parseInt(this.props.match.params.count);
+    const currentCount = parseInt(this.props.match.params.count || 0);
     let count = 0;
     let beforeSuffix = "";
     if (currentCount <= 0) {

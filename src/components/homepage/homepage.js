@@ -24,18 +24,33 @@ export class Homepage extends React.Component {
     super();
     this.clickNext = this.clickNext.bind(this);
     this.clickPrev = this.clickPrev.bind(this);
+    this.timer = null;
+  }
+
+  subscribe(subreddit, count, callback) {
+    this.timer = setInterval(() => callback(subreddit, count), 1000);
+  }
+
+  unsubscribe() {
+    clearInterval(this.timer);
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   componentDidMount() {
     const {count, subreddit} = this.props.match.params;
     this.props.onGetPosts(subreddit, count);
+    this.subscribe(subreddit, count, this.props.onGetPosts);
   }
 
   componentDidUpdate(preProps) {
     const oldCount = preProps.match.params.count;
     const {count, subreddit} = this.props.match.params;
     if (count !== oldCount) {
-      this.props.onGetPosts(subreddit, count);
+      this.unsubscribe();
+      this.subscribe(subreddit, count, this.props.onGetPosts)
     }
   }
 

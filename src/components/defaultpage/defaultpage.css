@@ -1,0 +1,13 @@
+.defaultPage {
+  font-size: 18px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.defaultInput {
+  width: 80%;
+  font-size: 18px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+}

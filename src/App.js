@@ -1,8 +1,8 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import './App.css';
 import Homepage from './components/homepage/homepage';
-import InputSubreddit from './components/InputSubreddit/inputSubreddit';
+import DefaultPage from './components/defaultpage/defaultpage';
 
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/:subreddit/:count?" component={Homepage} />
-        <Route from="/" component={InputSubreddit}/>
+        <Route from="/" component={DefaultPage}/>
       </Switch>
     </BrowserRouter>
   );

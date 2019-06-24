@@ -1,6 +1,7 @@
 import React from 'react';
+import './defaultpage.css';
 
-class InputSubreddit extends React.Component {
+class DefaultPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -20,13 +21,13 @@ class InputSubreddit extends React.Component {
 
   render () {
     return (
-      <div>
-        Type Subreddit Here
-        <input type="text" value={this.state.inputValue} onChange={this.handleInput} name="subreddit" />
-        <input type="submit" value="Submit" onClick={this.submitHandler} />
+      <div className="defaultPage">
+        <h2 className="defaultPageTitle">Type Subreddit Here</h2>
+        <input className="subredditInput" type="text" value={this.state.inputValue} onChange={this.handleInput} name="subreddit" />
+        <input className="submitSubreddit" type="submit" value="Submit" onClick={this.submitHandler} />
       </div>
     );
   }
 }
 
-export default InputSubreddit;
+export default DefaultPage;

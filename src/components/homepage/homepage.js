@@ -28,7 +28,7 @@ export class Homepage extends React.Component {
   }
 
   subscribe(subreddit, count, callback) {
-    this.timer = setInterval(() => callback(subreddit, count), 1000);
+    this.timer = setInterval(() => callback(subreddit, count), 60 * 1000);
   }
 
   unsubscribe() {

@@ -6,6 +6,7 @@ class DefaultPage extends React.Component {
     super();
     this.state = {
       inputValue: "",
+      error: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -16,15 +17,20 @@ class DefaultPage extends React.Component {
   }
 
   submitHandler() {
-    this.props.history.push(`/${this.state.inputValue}/0`);
+    if (this.state.inputValue !== "" && this.state.inputValue.split(' ').length < 2) {
+      this.props.history.push(`/${this.state.inputValue}/0`);
+    } else {
+      this.setState({error: true});
+    }
   }
 
   render () {
     return (
       <div className="defaultPage">
         <h2 className="defaultPageTitle">Type Subreddit Here</h2>
-        <input className="subredditInput" type="text" value={this.state.inputValue} onChange={this.handleInput} name="subreddit" />
-        <input className="submitSubreddit" type="submit" value="Submit" onClick={this.submitHandler} />
+        <input className="defaultInput" type="text" value={this.state.inputValue} onChange={this.handleInput} name="subreddit" />
+        <input className="defaultSubmit" type="submit" value="Submit" onClick={this.submitHandler} />
+        <h3>{this.state.error}</h3>
       </div>
     );
   }

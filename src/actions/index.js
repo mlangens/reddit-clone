@@ -19,7 +19,12 @@ export const getPosts = (subredditName, count) => dispatch => {
           };
         });
         dispatch(getPostsSuccess(posts, before, after));
-    })
+    }).catch((error) => {
+      if (error.response || error.request || error.message) {
+        debugger;
+        dispatch(getPostsFailed(error));
+      }
+  });
 }
 
 const getPostsSuccess = (posts, before, after) => ({
@@ -27,3 +32,7 @@ const getPostsSuccess = (posts, before, after) => ({
   payload: {posts, before, after}
 });
 
+const getPostsFailed = (error) => ({
+  type: 'FETCH_POSTS_FAILED',
+  payload: {...error}
+});

@@ -28,6 +28,7 @@ export class Homepage extends React.Component {
   }
 
   subscribe(subreddit, count, callback) {
+    this.props.onGetPosts(subreddit, count);
     this.timer = setInterval(() => callback(subreddit, count), 60 * 1000);
   }
 
@@ -41,7 +42,6 @@ export class Homepage extends React.Component {
 
   componentDidMount() {
     const {count, subreddit} = this.props.match.params;
-    this.props.onGetPosts(subreddit, count);
     this.subscribe(subreddit, count, this.props.onGetPosts);
   }
 

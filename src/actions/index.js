@@ -21,7 +21,6 @@ export const getPosts = (subredditName, count) => dispatch => {
         dispatch(getPostsSuccess(posts, before, after));
     }).catch((error) => {
       if (error.response || error.request || error.message) {
-        debugger;
         dispatch(getPostsFailed(error));
       }
   });

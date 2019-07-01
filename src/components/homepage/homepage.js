@@ -25,6 +25,7 @@ export class Homepage extends React.Component {
     super();
     this.clickNext = this.clickNext.bind(this);
     this.clickPrev = this.clickPrev.bind(this);
+    this.clickBack = this.clickBack.bind(this);
     this.handlePosts = this.handlePosts.bind(this);
     this.timer = null;
   }
@@ -81,6 +82,10 @@ export class Homepage extends React.Component {
     }
   }
 
+  clickBack() {
+    this.props.history.push('/');
+  }
+
   handlePosts() {
     if (this.props.posts) {
       return this.props.posts.map((postDetails, index) =>
@@ -96,6 +101,8 @@ export class Homepage extends React.Component {
     return (
       <div className="App">
         <div className="header">
+          <button onClick={this.clickBack}>Back</button>
+          <br />
           <button onClick={this.clickPrev}>Prev</button>
           <button onClick={this.clickNext}>Next</button>
         </div>
@@ -103,6 +110,8 @@ export class Homepage extends React.Component {
         <div className="footer">
           <button onClick={this.clickPrev}>Prev</button>
           <button onClick={this.clickNext}>Next</button>
+          <br />
+          <button onClick={this.clickBack}>Back</button>
         </div>
       </div>
     );

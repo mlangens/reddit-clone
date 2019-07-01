@@ -33,5 +33,5 @@ const getPostsSuccess = (posts, before, after) => ({
 
 const getPostsFailed = (error) => ({
   type: 'FETCH_POSTS_FAILED',
-  payload: {...error}
+  payload: {error}
 });

@@ -5,9 +5,10 @@ const initialState = {
   "after": "",
   "before": "",
   "posts": [],
+  "error": null,
 };
 
-describe('team reducer', () => {
+describe('posts reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
@@ -22,6 +23,14 @@ describe('team reducer', () => {
     };
     expect(reducer(initialState, successAction)).toEqual({posts, before, after});
   });
-});
 
+  it('should handle FETCH_POSTS_FAILED', () => {
+    const error = {"error": {"error": "error"}};
+    const failAction = {
+      type: 'FETCH_POSTS_FAILED',
+      payload: {...error}
+    };
+    expect(reducer(initialState, failAction)).toEqual({"error": {"error": "error"}});
+  });
+});
 

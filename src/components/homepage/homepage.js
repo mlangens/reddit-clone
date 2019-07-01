@@ -15,7 +15,8 @@ const mapStateToProps = state => {
   return {
     posts: state.postsReducer.posts,
     after: state.postsReducer.after,
-    before: state.postsReducer.before
+    before: state.postsReducer.before,
+    error: state.postsReducer.error
   }
 }
 
@@ -24,6 +25,7 @@ export class Homepage extends React.Component {
     super();
     this.clickNext = this.clickNext.bind(this);
     this.clickPrev = this.clickPrev.bind(this);
+    this.handlePosts = this.handlePosts.bind(this);
     this.timer = null;
   }
 
@@ -79,17 +81,25 @@ export class Homepage extends React.Component {
     }
   }
 
+  handlePosts() {
+    if (this.props.posts) {
+      return this.props.posts.map((postDetails, index) =>
+      <Post key={`post_${index}`} post={postDetails}></Post>)
+    } else if (this.props.error) {
+      return <h3>This reddit does not exist</h3>;
+    } else {
+      return <h3>Loading</h3>;
+    }
+  }
+
   render () {
-    const postsList = this.props.posts.map((postDetails, index) =>
-      <Post key={`post_${index}`} post={postDetails}></Post>
-    );
     return (
       <div className="App">
         <div className="header">
           <button onClick={this.clickPrev}>Prev</button>
           <button onClick={this.clickNext}>Next</button>
         </div>
-        {postsList}
+        {this.handlePosts()}
         <div className="footer">
           <button onClick={this.clickPrev}>Prev</button>
           <button onClick={this.clickNext}>Next</button>

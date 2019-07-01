@@ -2,6 +2,7 @@ const initialState = {
   posts: [],
   before: "",
   after: "",
+  error: null,
 };
 
 export default (state = initialState, action) => {
@@ -14,7 +15,7 @@ export default (state = initialState, action) => {
       }
     case 'FETCH_POSTS_FAILED':
       return {
-        error: action.payload
+        error: action.payload.error
       }
     default:
       return state
